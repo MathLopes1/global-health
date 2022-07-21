@@ -1,11 +1,14 @@
 import Server, { Express } from 'express';
 import Database from './database/index';
+import IndexRoutes from './routes';
 
 class App {
   readonly server: Express;
 
   constructor() {
     this.server = Server();
+    this.middlewares();
+    this.routes();
   }
 
   static async Starting() {
@@ -18,6 +21,10 @@ class App {
   private middlewares(): void {
     this.server.use(Server.json());
     this.server.use(Server.urlencoded({ extended: true }));
+  }
+
+  private routes(): void {
+    this.server.use('/api', IndexRoutes.routes());
   }
 }
 

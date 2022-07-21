@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import IPatient from './IPatient';
 
 const PatientSchema = new mongoose.Schema({
     name: {
@@ -18,5 +19,5 @@ const PatientSchema = new mongoose.Schema({
     versionKey: false,
 });
 
-const Patient = mongoose.model('Pacientes', PatientSchema);
+const Patient = mongoose.model<IPatient>('Pacientes', PatientSchema);
 export default Patient;
