@@ -18,7 +18,7 @@ const PatientSchema = new mongoose.Schema({
 }, {
     versionKey: false,
     timestamps: { 
-      createdAt: 'created_at',
+      createdAt: 'createdAt',
       updatedAt: false
     }
 });
