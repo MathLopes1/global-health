@@ -7,7 +7,7 @@ import IPatientService from "../services/PatientService.contract";
 
 @Controller('/patient')
 class PatientController {
-  private readonly patientService;
+  private readonly patientService: IPatientService;
 
   constructor(@Inject(PatientService) patientService: IPatientService) {
     this.patientService = patientService;
@@ -21,7 +21,7 @@ class PatientController {
 
       return res.status(201).json(result);
     } catch (error) {
-      return res.status(error.statusCode).json({
+      return res.status(500).json({
         details: {
           name: error.name,
           description: error.message,

@@ -1,8 +1,10 @@
 import IPatient from "../model/IPatient";
 import Patient from "../model/Patient";
 import IPatientRepository from "./PatientRepository.contract";
+import { Injectable } from '@decorators/di';
 
-export default class PatientRepository implements IPatientRepository {
+@Injectable()
+class PatientRepository implements IPatientRepository {
     private readonly patientSchema;
 
     constructor(){
@@ -13,3 +15,5 @@ export default class PatientRepository implements IPatientRepository {
         return newPatient;
     }
 }
+
+export default PatientRepository;
