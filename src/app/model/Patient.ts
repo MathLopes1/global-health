@@ -11,18 +11,8 @@ const PatientSchema = new mongoose.Schema({
         unique: true
     },
     address:{ 
-        street: {
-            type: String,
-            required: true
-        },
-        district: {
-            type: String,
-            required: true
-        },
-        adressNumber: {
-            type: String,
-            required: true
-        }
+        type: String,
+        required: true
     }
 }, {
     versionKey: false,
