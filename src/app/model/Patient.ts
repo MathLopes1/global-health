@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { now } from 'mongoose';
 import IPatient from './IPatient';
 
 const PatientSchema = new mongoose.Schema({
@@ -17,6 +17,10 @@ const PatientSchema = new mongoose.Schema({
     }
 }, {
     versionKey: false,
+    timestamps: { 
+      createdAt: 'createdAt',
+      updatedAt: false
+    }
 });
 
 const Patient = mongoose.model<IPatient>('Pacientes', PatientSchema);
