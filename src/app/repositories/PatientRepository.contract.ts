@@ -5,4 +5,5 @@ export default interface IPatientRepository {
     update: (patientId: string, payload: object) => Promise<IPatient>
     findAll: () => Promise<IPatient[]>
     findById: (patientId: string) => Promise<IPatient>
+    deleteById: (patientId: string) => Promise<IPatient>
 }

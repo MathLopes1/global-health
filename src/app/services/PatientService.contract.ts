@@ -6,4 +6,5 @@ export default interface IPatientService {
     update: (patientId: string, payload: UpdatePatientDTO) => Promise<IPatient>
     findAll: () => Promise<IPatient[]>
     findById: (patientId: string) => Promise<IPatient>
+    deleteById: (patientId: string) => Promise<IPatient>
 }

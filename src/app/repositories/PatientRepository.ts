@@ -16,7 +16,7 @@ class PatientRepository implements IPatientRepository {
         return newPatient;
     }
 
-    async update (patientId: string, payload: object) {
+    async update(patientId: string, payload: object) {
         const updatedPatient: IPatient = await this.patientSchema.findByIdAndUpdate(patientId, payload);
         return updatedPatient;
     }
@@ -29,6 +29,11 @@ class PatientRepository implements IPatientRepository {
     async findById(patientId: string): Promise<IPatient> {
         const patient: IPatient = await this.patientSchema.findById(patientId);
         return patient;
+    }
+
+    async deleteById(patientId: string): Promise<IPatient> {
+        const result = await this.patientSchema.findByIdAndDelete(patientId)
+        return result
     }
 }
 
