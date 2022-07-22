@@ -18,8 +18,10 @@ class PatientController {
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const patient: IPatient = req.body;
+      
       const result: IPatient = await this.patientService
         .create(new CreatePatientRequest(patient));
+
       return res.status(201).json(result);
     } catch (error) {
       return res.status(500).json({
@@ -34,8 +36,29 @@ class PatientController {
   @Get('/')
   async findAll(req: Request, res: Response): Promise<Response>{
     try {
-      const listOfPatient: IPatient[] = await this.patientService.findAll()
-      return res.status(201).json(listOfPatient)
+      const listOfPatient: IPatient[] = await this.patientService
+        .findAll()
+
+      return res.status(200).json(listOfPatient)
+    } catch (error) {
+       return res.status(500).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Get('/:patientId')
+  async findById(req: Request, res: Response): Promise<Response>{
+    try {
+      const { patientId } = req.params
+
+      const listOfPatient: IPatient = await this.patientService
+        .findById(patientId)
+
+      return res.status(200).json(listOfPatient)
     } catch (error) {
        return res.status(500).json({
         details: {

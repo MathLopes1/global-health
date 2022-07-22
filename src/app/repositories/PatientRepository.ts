@@ -20,6 +20,11 @@ class PatientRepository implements IPatientRepository {
         const listOfPatient: IPatient[] = await this.patientSchema.find();
         return listOfPatient;
     }
+
+    async findById(patientId: string): Promise<IPatient> {
+        const patient: IPatient = await this.patientSchema.findById(patientId);
+        return patient;
+    }
 }
 
 export default PatientRepository;
