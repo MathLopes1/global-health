@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { Inject } from "@decorators/di";
-import { Controller, Get, Post } from "@decorators/express";
+import { Controller, Get, Post, Put } from "@decorators/express";
 import IPatient from "../model/IPatient";
 import PatientService from "../services/PatientService";
 import IPatientService from "../services/PatientService.contract";
 import CreatePatientRequest from './request/createPatient.request';
+import UpdatePatientRequest from './request/updatePatient.request';
 
 @Controller('/patient')
 class PatientController {
@@ -17,12 +18,33 @@ class PatientController {
   @Post('/')
   async create(req: Request, res: Response): Promise<Response> {
     try {
-      const patient: IPatient = req.body;
+      const patient: CreatePatientRequest = req.body;
       
       const result: IPatient = await this.patientService
-        .create(new CreatePatientRequest(patient));
+        .create(patient);
 
       return res.status(201).json(result);
+    } catch (error) {
+      return res.status(500).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Put('/:patientId')
+  async update(req: Request, res: Response): Promise<Response> {
+    try {
+      const { patientId } = req.params
+
+      const payload: UpdatePatientRequest = req.body;
+      
+      const result: IPatient = await this.patientService
+        .update(patientId, payload);
+
+      return res.status(200).json(result);
     } catch (error) {
       return res.status(500).json({
         details: {
