@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from "class-validator"
+import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator"
 
 export default class CreatePatientDTO {
 
@@ -8,11 +8,13 @@ export default class CreatePatientDTO {
 
     @IsNotEmpty()
     @IsString()
-    @Length(1, 24 )
+    @MinLength(24)
+    @MaxLength(24)
     healthInsuranceCardId: string
     
     @IsNotEmpty()
     @IsString()
+    @MaxLength(255)
     address: string
 
     constructor(props: CreatePatientDTO){

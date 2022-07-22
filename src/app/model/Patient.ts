@@ -9,11 +9,14 @@ const PatientSchema = new mongoose.Schema({
     healthInsuranceCardId: {
         type: String,
         required: true,
+        minLength: 24,
+        maxLength: 24,
         unique: true
     },
     address:{ 
         type: String,
-        required: true
+        required: true,
+        maxLength: 255,
     }
 }, {
     versionKey: false,
@@ -24,4 +27,4 @@ const PatientSchema = new mongoose.Schema({
 });
 
 const Patient = mongoose.model<IPatient>('Pacientes', PatientSchema);
-export default Patient;
+export default Patient
