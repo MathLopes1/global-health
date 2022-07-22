@@ -34,6 +34,11 @@ class PatientService implements IPatientService {
     const patient: IPatient = await this.patientRepository.findById(patientId);
     return patient;
   }
+
+  async deleteById(patientId: string): Promise<IPatient> {
+    const result = await this.patientRepository.deleteById(patientId)
+    return result
+  }
 }
 
 export default PatientService;

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Inject } from "@decorators/di";
-import { Controller, Get, Post, Put } from "@decorators/express";
+import { Controller, Delete, Get, Post, Put } from "@decorators/express";
 import IPatient from "../model/IPatient";
 import PatientService from "../services/PatientService";
 import IPatientService from "../services/PatientService.contract";
@@ -77,10 +77,32 @@ class PatientController {
     try {
       const { patientId } = req.params
 
-      const listOfPatient: IPatient = await this.patientService
+      const patient: IPatient = await this.patientService
         .findById(patientId)
 
-      return res.status(200).json(listOfPatient)
+      return res.status(200).json(patient)
+    } catch (error) {
+       return res.status(500).json({
+        details: {
+          name: error.name,
+          description: error.message,
+        },
+      });
+    }
+  }
+
+  @Delete('/:patientId')
+  async deleteById(req: Request, res: Response): Promise<Response>{
+    try {
+      const { patientId } = req.params
+
+      const result: IPatient = await this.patientService
+        .deleteById(patientId)
+
+      return res.status(200).json({
+        resultado: "Paciente Deletado com sucesso",
+        dados: result 
+      })
     } catch (error) {
        return res.status(500).json({
         details: {
