@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@decorators/di';
 import CreatePatientDTO from '../controllers/dto/createPatient.dto';
+import UpdatePatientDTO from '../controllers/dto/updatePatient.dto';
 import IPatient from '../model/IPatient';
 
 import PatientRepository from '../repositories/PatientRepository';
@@ -17,6 +18,11 @@ class PatientService implements IPatientService {
   async create(patient: CreatePatientDTO): Promise<IPatient> {
     const newPatient: IPatient = await this.patientRepository.create(patient);
     return newPatient;
+  }
+
+  async update (patientId: string, payload: UpdatePatientDTO) {
+    const updatedPatient: IPatient = await this.patientRepository.update(patientId, payload);
+    return updatedPatient;
   }
 
   async findAll(): Promise<IPatient[]> {

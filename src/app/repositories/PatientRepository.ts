@@ -16,6 +16,11 @@ class PatientRepository implements IPatientRepository {
         return newPatient;
     }
 
+    async update (patientId: string, payload: object) {
+        const updatedPatient: IPatient = await this.patientSchema.findByIdAndUpdate(patientId, payload);
+        return updatedPatient;
+    }
+
     async findAll(): Promise<IPatient[]> {
         const listOfPatient: IPatient[] = await this.patientSchema.find();
         return listOfPatient;
