@@ -31,6 +31,11 @@ class PatientRepository implements IPatientRepository {
     return patient;
   }
 
+  async findByName(patientName: string): Promise<IPatient> {
+    const patient: IPatient = await this.patientSchema.findOne({ name: patientName });
+    return patient;
+  }
+
   async deleteById(patientId: string): Promise<IPatient> {
     const result = await this.patientSchema.findByIdAndDelete(patientId);
     return result;
