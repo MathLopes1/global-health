@@ -27,7 +27,7 @@ class PatientController {
 
       return res.status(201).json(result);
     } catch (error) {
-      return res.status(500).json({
+      return res.status(error.statusCode || 500).json({
         details: {
           name: error.name,
           description: error.message,
@@ -48,7 +48,7 @@ class PatientController {
 
       return res.status(200).json(result);
     } catch (error) {
-      return res.status(500).json({
+      return res.status(error.statusCode || 500).json({
         details: {
           name: error.name,
           description: error.message,
@@ -84,7 +84,7 @@ class PatientController {
 
       return res.status(200).json(patient);
     } catch (error) {
-      return res.status(500).json({
+      return res.status(error.statusCode || 500).json({
         details: {
           name: error.name,
           description: error.message,
@@ -106,7 +106,7 @@ class PatientController {
         dados: result,
       });
     } catch (error) {
-      return res.status(500).json({
+      return res.status(error.statusCode || 500).json({
         details: {
           name: error.name,
           description: error.message,
