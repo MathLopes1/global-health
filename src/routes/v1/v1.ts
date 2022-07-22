@@ -9,10 +9,9 @@ class RoutesV1 {
     attachControllers(
       router,
       [
-        PatientController
+        PatientController,
       ],
     );
-    
     return router;
   }
 }
