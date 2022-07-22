@@ -18,6 +18,11 @@ class PatientService implements IPatientService {
     const newPatient: IPatient = await this.patientRepository.create(patient);
     return newPatient;
   }
+
+  async findAll(): Promise<IPatient[]> {
+    const listOfPatient: IPatient[] = await this.patientRepository.findAll();
+    return listOfPatient;
+  }
 }
 
 export default PatientService;
