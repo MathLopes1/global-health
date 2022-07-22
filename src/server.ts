@@ -1,7 +1,6 @@
-import 'reflect-metadata'
-import 'dotenv/config'
+import 'reflect-metadata';
+import 'dotenv/config';
 import App from './App';
-
 
 const Server: Function = async (): Promise<void> => {
   const app = await App.Starting();

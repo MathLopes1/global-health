@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
-import { Inject } from "@decorators/di";
-import { Controller, Delete, Get, Post, Put } from "@decorators/express";
-import IPatient from "../model/IPatient";
-import PatientService from "../services/PatientService";
-import IPatientService from "../services/PatientService.contract";
+import { Inject } from '@decorators/di';
+import {
+  Controller, Delete, Get, Post, Put,
+} from '@decorators/express';
+import IPatient from '../model/IPatient';
+import PatientService from '../services/PatientService';
+import IPatientService from '../services/PatientService.contract';
 import CreatePatientRequest from './request/createPatient.request';
 import UpdatePatientRequest from './request/updatePatient.request';
 
@@ -19,7 +21,7 @@ class PatientController {
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const patient: CreatePatientRequest = req.body;
-      
+
       const result: IPatient = await this.patientService
         .create(patient);
 
@@ -37,10 +39,10 @@ class PatientController {
   @Put('/:patientId')
   async update(req: Request, res: Response): Promise<Response> {
     try {
-      const { patientId } = req.params
+      const { patientId } = req.params;
 
       const payload: UpdatePatientRequest = req.body;
-      
+
       const result: IPatient = await this.patientService
         .update(patientId, payload);
 
@@ -56,14 +58,14 @@ class PatientController {
   }
 
   @Get('/')
-  async findAll(req: Request, res: Response): Promise<Response>{
+  async findAll(req: Request, res: Response): Promise<Response> {
     try {
       const listOfPatient: IPatient[] = await this.patientService
-        .findAll()
+        .findAll();
 
-      return res.status(200).json(listOfPatient)
+      return res.status(200).json(listOfPatient);
     } catch (error) {
-       return res.status(500).json({
+      return res.status(500).json({
         details: {
           name: error.name,
           description: error.message,
@@ -73,16 +75,16 @@ class PatientController {
   }
 
   @Get('/:patientId')
-  async findById(req: Request, res: Response): Promise<Response>{
+  async findById(req: Request, res: Response): Promise<Response> {
     try {
-      const { patientId } = req.params
+      const { patientId } = req.params;
 
       const patient: IPatient = await this.patientService
-        .findById(patientId)
+        .findById(patientId);
 
-      return res.status(200).json(patient)
+      return res.status(200).json(patient);
     } catch (error) {
-       return res.status(500).json({
+      return res.status(500).json({
         details: {
           name: error.name,
           description: error.message,
@@ -92,19 +94,19 @@ class PatientController {
   }
 
   @Delete('/:patientId')
-  async deleteById(req: Request, res: Response): Promise<Response>{
+  async deleteById(req: Request, res: Response): Promise<Response> {
     try {
-      const { patientId } = req.params
+      const { patientId } = req.params;
 
       const result: IPatient = await this.patientService
-        .deleteById(patientId)
+        .deleteById(patientId);
 
       return res.status(200).json({
-        resultado: "Paciente Deletado com sucesso",
-        dados: result 
-      })
+        resultado: 'Paciente Deletado com sucesso',
+        dados: result,
+      });
     } catch (error) {
-       return res.status(500).json({
+      return res.status(500).json({
         details: {
           name: error.name,
           description: error.message,

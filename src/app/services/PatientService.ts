@@ -20,7 +20,7 @@ class PatientService implements IPatientService {
     return newPatient;
   }
 
-  async update (patientId: string, payload: UpdatePatientDTO) {
+  async update(patientId: string, payload: UpdatePatientDTO) {
     const updatedPatient: IPatient = await this.patientRepository.update(patientId, payload);
     return updatedPatient;
   }
@@ -36,8 +36,8 @@ class PatientService implements IPatientService {
   }
 
   async deleteById(patientId: string): Promise<IPatient> {
-    const result = await this.patientRepository.deleteById(patientId)
-    return result
+    const result = await this.patientRepository.deleteById(patientId);
+    return result;
   }
 }
 

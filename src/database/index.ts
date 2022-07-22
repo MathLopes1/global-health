@@ -1,11 +1,11 @@
-import Mongoose from "mongoose";
+import Mongoose from 'mongoose';
 
 class Database {
-    constructor() {
-        this.connect();
-    }
+  constructor() {
+    this.connect();
+  }
 
-      public async connect(): Promise< typeof Mongoose | void > {
+  public async connect(): Promise< typeof Mongoose | void > {
     try {
       console.log('connected to database');
       const db: string = process.env.DATABASE_URL;
@@ -17,4 +17,4 @@ class Database {
   }
 }
 
-export default new Database()
+export default new Database();

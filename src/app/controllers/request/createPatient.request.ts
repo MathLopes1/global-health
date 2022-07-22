@@ -1,23 +1,24 @@
-import { IsNotEmpty, IsString, MaxLength, MinLength } from "class-validator"
+import {
+  IsNotEmpty, IsString, MaxLength, MinLength,
+} from 'class-validator';
 
 export default class CreatePatientRequest {
-
     @IsNotEmpty()
     @IsString()
-    name: string
+      name: string;
 
     @IsNotEmpty()
     @IsString()
     @MinLength(24)
     @MaxLength(24)
-    healthInsuranceCardId: string
-    
+      healthInsuranceCardId: string;
+
     @IsNotEmpty()
     @IsString()
     @MaxLength(255)
-    address: string
+      address: string;
 
-    constructor(props: CreatePatientRequest){
-        Object.assign(this, props)
+    constructor(props: CreatePatientRequest) {
+      Object.assign(this, props);
     }
 }
