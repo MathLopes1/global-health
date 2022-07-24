@@ -1,5 +1,9 @@
 import { Router } from 'express';
 import { attachControllers } from '@decorators/express';
+
+import swaggerUI from 'swagger-ui-express';
+import SwaggerDoc from '../../../swagger.json';
+
 import PatientController from '../../app/controllers/PatientController';
 
 class RoutesV1 {
@@ -12,6 +16,10 @@ class RoutesV1 {
         PatientController,
       ],
     );
+
+    router.use('/api-docs', swaggerUI.serve, swaggerUI
+      .setup(SwaggerDoc));
+
     return router;
   }
 }

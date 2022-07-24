@@ -1,0 +1,278 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Global Health 1.0",
+    "description": "Sistema básico de cadastro, listagem, atualização e deleção de pacientes.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Matheus Lopes da Silva",
+      "email": "iamatheuslopes@gmail.com"
+    }
+  },
+  "externalDocs": {
+    "description": "Documentação",
+    "url": "https://github.com/MathLopes1/global-health.git"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "GLOBAL HEALTH LOCAL"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Pacientes",
+      "description": "Rotas de Pacientes"
+    }
+  ],
+  "paths": {
+    "/patient": {
+      "post": {
+        "tags": [
+          "Pacientes"
+        ],
+        "summary": "Criar um Paciente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Matheus Lopes da Silva"
+                  },
+                  "healthInsuranceCardId": {
+                    "type": "string",
+                    "example": "62dabab25d042a616cdbe249"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Rua Ledinha, 17"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "healthInsuranceCardId": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Pacientes"
+        ],
+        "summary": "Listar todos os pacientes ou por query",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "healthInsuranceCardId",
+            "in": "query",
+            "description": "healthInsuranceCardId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "description": "address",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "pacientes": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "_id": {
+                            "type": "number"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "healthInsuranceCardId": {
+                            "type": "string"
+                          },
+                          "address": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "tags": [
+          "Pacientes"
+        ],
+        "summary": "Listar um Paciente por Id",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "healthInsuranceCardId": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Pacientes"
+        ],
+        "summary": "Atualizar um paciente",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "João"
+                  },
+                  "healthInsuranceCardId": {
+                    "type": "string",
+                    "example": "62dabab25d042a616cdbe229"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Rua MV, 17"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated sucess",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "number"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "healthInsuranceCardId": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Pacientes"
+        ],
+        "summary": "Deletar um Paciente",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import Server, { Express } from 'express';
+import cors from 'cors';
 import Database from './database/index';
 import IndexRoutes from './routes';
 
@@ -19,6 +20,7 @@ class App {
   }
 
   private middlewares(): void {
+    this.server.use(cors());
     this.server.use(Server.json());
     this.server.use(Server.urlencoded({ extended: true }));
   }
