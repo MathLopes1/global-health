@@ -11,6 +11,10 @@
 ## Descrição do Projeto
 API Rest Global Health
 
+### 🌐 Deploy
+ > O deploy foi feito utilizando o heroku para a hospedagem da aplicação.
+ - [Link - Global Health](https://health-global.herokuapp.com/api/v1/api-docs/#/)
+
 ### Links úteis.
 [Documentação da API - Global Health](https://documenter.getpostman.com/view/18168778/UzXKVydr) <br>
 
@@ -84,7 +88,7 @@ Exemplo de body:
 ### REQUEST - (PUT)
 > Para atualizar um paciente
 
-> PUT - `localhost:3000/api/v1/patient/:patientId
+> PUT - `localhost:3000/api/v1/patient/:patientId`
 
 Exemplo de body:
 ```json
