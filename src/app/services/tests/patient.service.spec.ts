@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
 import { createMock } from '@golevelup/ts-jest';
+import BadRequest from '../../exceptions/errors/httpError/BadRequest.error';
 
 import IPatientRepository from '../../repositories/PatientRepository.contract';
 import PatientService from '../PatientService';
@@ -34,5 +35,16 @@ describe('Create Patient', () => {
       .toEqual(testPatientRepositoryReturn.healthInsuranceCardId);
     expect(patient.name)
       .toEqual(testPatientRepositoryReturn.name);
+  });
+
+  it('Should be error patient already registered', async () => {
+    jest.spyOn(patientRepositoryMock, 'findByName').mockResolvedValueOnce(testPatientRepositoryReturn);
+    jest.spyOn(patientRepositoryMock, 'create').mockResolvedValueOnce(testPatientRepositoryReturn);
+
+    const service = new PatientService(patientRepositoryMock);
+
+    const patient = service.create(testPatientServiceReturn);
+
+    await expect(patient).rejects.toEqual(new BadRequest(testPatientServiceReturn.name));
   });
 });
