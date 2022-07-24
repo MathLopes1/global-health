@@ -16,6 +16,7 @@
   "scripts": {
     "start": "node dist/src/server.js",
     "start:dev": "ts-node-dev --transpile-only src/server.ts",
+    "build": "tsc",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
     "test": "jest",
     "test:cov": "jest --coverage"
