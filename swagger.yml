@@ -10,6 +10,8 @@ externalDocs:
   description: Documentação
   url: https://github.com/MathLopes1/global-health.git
 servers:
+- url: https://health-global.herokuapp.com/api/v1
+  description: GLOBAL HEALTH HEROKU
 - url: http://localhost:3000/api/v1
   description: GLOBAL HEALTH LOCAL
   
